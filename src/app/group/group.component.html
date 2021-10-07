@@ -1,0 +1,47 @@
+
+<p>Group Page</p>
+<p>This page shows the current list of all of your accessible groups!</p>
+<p>If you are an Admin, you can also gain access to Forms to make changes to the Groups!</p>
+
+<table>
+  <tr>
+    <th>Number</th>
+    <th>GroupName</th>
+    <th>Channels</th>
+    <th>List of Assis</th>
+  </tr>
+  <tr *ngFor="let pag of page; index as i;">
+    <td>{{i}}</td>
+    <td>{{pag}}</td>
+    <td>{{channel[i]}}</td>
+    <td>{{assis[i]}}</td>
+  </tr>
+</table>
+<ng-template [ngIf]="roles == 'SuperAdmin' || roles == 'GroupAdmin'">
+<div class="container"> 
+  <router-outlet></router-outlet> 
+  <form #createGroupForm="ngForm" (ngSubmit)="createGroup(createGroupForm.value)">
+    <input type="text" id="page" class="fadeIn second" name="page" placeholder="page" ngModel>
+    <input type="text" id="channel" class="fadeIn second" name="channel" placeholder="channel" ngModel>
+    <!--<input type="text" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>-->
+    <button>Create a new Group</button>
+  </form>
+  <form #addUserForm="ngForm" (ngSubmit)="addUserToGroup(addUserForm.value)">
+    <input type="text" id="page" class="fadeIn second" name="page" placeholder="page" ngModel>
+    <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel>
+      <!--<input type="text" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>-->
+      <button>Add an existing user to Group</button>
+    </form>
+    <form #addAssisForm="ngForm" (ngSubmit)="addAssisToGroup(addAssisForm.value)">
+      <input type="text" id="page" class="fadeIn second" name="page" placeholder="page" ngModel>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel>
+      <!--<input type="text" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>-->
+      <button>Create Assis in Group!</button>
+    </form>
+</div>
+</ng-template>
+<!--
+<li *ngFor="let user of users; index as i; first as isFirst">
+    {{i}}/{{users.length}}. {{user}} <span *ngIf="isFirst">default</span>
+  </li>
+-->

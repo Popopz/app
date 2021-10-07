@@ -1,0 +1,34 @@
+<p>Users Page</p>
+<p>This Page shows your current profile Information, including your Email, Roles, Groups etc.</p>
+<p>If you are a SuperAdmin, then you can also make modifications to Users aswell!</p>
+<table>
+  <tr>
+    <th>Number</th>
+    <th>UserName</th>
+    <th>Email</th>
+    <th>List of Roles</th>
+    <th>List of Groups</th>
+  </tr>
+  <tr *ngFor="let user of username; index as i;">
+    <td>{{i}}</td>
+    <td>{{user}}</td>
+    <td>{{email[i]}}</td>
+    <td>{{role[i]}}</td>
+    <td>{{groups[i]}}</td>
+  </tr>
+</table>
+<ng-template [ngIf]="roles == 'SuperAdmin'">
+<div class="container"> 
+    <router-outlet></router-outlet> 
+    <form #createForm="ngForm" (ngSubmit)="createUser(createForm.value)">
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel>
+      <!--<input type="text" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>-->
+      <button>Create User</button>
+    </form>
+    <form #deleteForm="ngForm" (ngSubmit)="deleteUser(deleteForm.value)">
+        <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ngModel>
+        <!--<input type="text" id="password" class="fadeIn third" name="password" placeholder="password" ngModel>-->
+        <button>Remove User</button>
+      </form>
+</div>
+</ng-template>
