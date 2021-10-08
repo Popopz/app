@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as TeleCord from '../../assets/TeleCord.json';
+import { CRUDService } from '../services/crud.service';
 
 
 @Component({
@@ -9,6 +10,9 @@ import * as TeleCord from '../../assets/TeleCord.json';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  constructor(){}
+  ngOnInit(){}
+  /*
   roles = this.getRole()
   getRole(){
     var listOfRoles = ['User']
@@ -114,4 +118,5 @@ export class UsersComponent implements OnInit {
     var groups = temp1;
     return groups;
   }
+  */
 }

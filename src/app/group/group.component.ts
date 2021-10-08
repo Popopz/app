@@ -9,6 +9,9 @@ import * as TeleCord from '../../assets/TeleCord.json';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
+  constructor(){}
+  ngOnInit(){}
+  /*
   roles = this.getRole()
   getRole(){
     var listOfRoles = ['User']
@@ -159,4 +162,5 @@ export class GroupComponent implements OnInit {
     }
     return assis;
   }
+  */
 }

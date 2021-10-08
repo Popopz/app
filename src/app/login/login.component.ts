@@ -8,6 +8,9 @@ import * as TeleCord from '../../assets/TeleCord.json';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(){}
+  ngOnInit(){}
+  /*
   loginUser(thing:any){
     console.warn(thing);
     var okay = false;
@@ -31,4 +34,5 @@ export class LoginComponent implements OnInit {
     console.log('Reading local json files');
     console.log(TeleCord);
   }
+  */
 }
