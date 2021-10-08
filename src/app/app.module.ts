@@ -9,6 +9,7 @@ import { ChatComponent } from './chat/chat.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SocketService } from './services/socket.service';
+import { CRUDService } from './services/crud.service';
 import { GroupComponent } from './group/group.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
