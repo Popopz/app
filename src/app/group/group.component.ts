@@ -13,7 +13,6 @@ import { group } from '../models/groupModel';
 export class GroupComponent implements OnInit {
   constructor(private router: Router, private CRUDService: CRUDService){}
   groups = new group;
-  isLoading = true;
   ngOnInit(){
     let myvar = localStorage.getItem("username");
     if (myvar == undefined){
@@ -24,32 +23,28 @@ export class GroupComponent implements OnInit {
     }
   }
   getGroups(){
-    console.log("hi");
+    console.log("From Component");
     this.CRUDService.readAllGroups().subscribe(
       data => this.groups = data,
-      error => console.log(error),
-      () => this.isLoading = false
+      error => console.log(error)
     );
   }
   createGroup(thing:any){
-    this.CRUDService.readAllGroups().subscribe(
+    this.CRUDService.createGroup(thing.page).subscribe(
       data => this.groups = data,
-      error => console.log(error),
-      () => this.isLoading = false
+      error => console.log(error)
     );
   }
   addUserToGroup(thing:any){
-    this.CRUDService.readAllGroups().subscribe(
+    this.CRUDService.addUserToGroup(thing.page, thing.name).subscribe(
       data => this.groups = data,
-      error => console.log(error),
-      () => this.isLoading = false
+      error => console.log(error)
     );
   }
   addAssisToGroup(thing:any){
-    this.CRUDService.readAllGroups().subscribe(
+    this.CRUDService.addAssisToGroup(thing.page, thing.name).subscribe(
       data => this.groups = data,
-      error => console.log(error),
-      () => this.isLoading = false
+      error => console.log(error)
     );
   }
   roles = "SuperAdmin";

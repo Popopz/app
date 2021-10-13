@@ -1,4 +1,4 @@
-export class group {
+export class user {
     _id?: string;
     userName?: string;
     email?: string;

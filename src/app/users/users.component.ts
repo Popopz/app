@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as TeleCord from '../../assets/TeleCord.json';
 import { CRUDService } from '../services/crud.service';
+import { user } from '../models/userModel';
 
 
 @Component({
@@ -10,15 +11,26 @@ import { CRUDService } from '../services/crud.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  constructor(private router: Router){}
+  constructor(private router: Router, private CRUDService: CRUDService){}
+  users = new user;
   ngOnInit(){
     let myvar = localStorage.getItem("username");
     if (myvar == undefined){
       this.router.navigateByUrl('/login');
     }
   }
-  deleteUser(thing:any){}
-  createUser(thing:any){}
+  deleteUser(thing:any){
+    this.CRUDService.removeUser(thing.username).subscribe(
+      data => this.users = data,
+      error => console.log(error)
+      );
+  }
+  createUser(thing:any){
+    this.CRUDService.createNewUser(thing.username, thing.email).subscribe(
+      data => this.users = data,
+      error => console.log(error)
+      );
+  }
   roles = "SuperAdmin";
   groups: any = null;
   role: any = null;

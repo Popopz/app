@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as TeleCord from '../../assets/TeleCord.json';
+import { CRUDService } from '../services/crud.service';
+import { user } from '../models/userModel'
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,16 @@ import * as TeleCord from '../../assets/TeleCord.json';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(){}
+  constructor(private router: Router, private CRUDService: CRUDService){}
+  users = new user;
   ngOnInit(){}
-  loginUser(thing:any){}
-  
+  loginUser(thing:any){
+    this.CRUDService.readAllUsers().subscribe(
+    data => this.users = data,
+    error => console.log(error)
+    );
+  }
+
   /*
   loginUser(thing:any){
     console.warn(thing);
