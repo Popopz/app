@@ -26,7 +26,7 @@ const mongoose = require('mongoose');
 //const { group } = require('console');
 const router = express.Router();
 readAllGroups = (req, res) => {
-    console.log("AHHH");
+    console.log("Recieved From Node");
     group = getGroupModel();
     group.find({}, function (err, docs) {
         if (err){
@@ -38,7 +38,7 @@ readAllGroups = (req, res) => {
             res.status(200).json(docs);
         }
     });
-    console.log("BAHHH");
+    console.log("Finished with it.");
 }
 
 router.route('/readAllGroups').get(readAllGroups);
