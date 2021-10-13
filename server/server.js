@@ -22,8 +22,6 @@ server.listen(http,PORT);
 //postlogin.js:
 //module.exports(req, res);
 const mongoose = require('mongoose');
-//const { createBrotliDecompress } = require('zlib');
-//const { group } = require('console');
 const router = express.Router();
 readAllGroups = (req, res) => {
     console.log("Recieved From Node");
@@ -42,16 +40,6 @@ readAllGroups = (req, res) => {
 }
 
 router.route('/readAllGroups').get(readAllGroups);
-
-
-
-//https://github.com/DavideViolante/Angular-Full-Stack/blob/29c12cf7c158f691ac659736da5e003c1a3dbca8/server/controllers/base.ts#L1
-
-
-
-
-
-
 app.use('/api', router);
 main().catch(err => console.log(err));
 mongoose.connect('mongodb://localhost:27017/test');
