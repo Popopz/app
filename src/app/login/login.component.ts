@@ -10,6 +10,8 @@ import * as TeleCord from '../../assets/TeleCord.json';
 export class LoginComponent implements OnInit {
   constructor(){}
   ngOnInit(){}
+  loginUser(thing:any){}
+  
   /*
   loginUser(thing:any){
     console.warn(thing);

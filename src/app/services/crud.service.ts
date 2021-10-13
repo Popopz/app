@@ -50,6 +50,7 @@ export class CRUDService {
     return this.http.post('/api/createNewUser', [userName, email]);
   }
   readAllGroups(): Observable<any> {
+    console.log("hello");
     return this.http.get('/api/readAllGroups');
   }
 }

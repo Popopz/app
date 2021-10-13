@@ -13,6 +13,7 @@ import { CRUDService } from './services/crud.service';
 import { GroupComponent } from './group/group.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UsersComponent } from './users/users.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

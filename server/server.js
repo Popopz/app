@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const app = express();
 const cors = require('cors');
 const http = require('http').Server(app);
@@ -12,7 +12,7 @@ const sockets = require('./sockets.js');
 const server = require('./listen.js');
 //const request = require('request');
 //Define port used for the server
-const PORT = 3001;
+const PORT = 3000;
 //This is the middleware, look it up later.
 app.use (cors());
 sockets.connect(io, PORT);
@@ -21,25 +21,43 @@ server.listen(http,PORT);
 //app.post('login', require('.router/postlogin.js'));
 //postlogin.js:
 //module.exports(req, res);
-
 const mongoose = require('mongoose');
-const { createBrotliDecompress } = require('zlib');
-const { group } = require('console');
+//const { createBrotliDecompress } = require('zlib');
+//const { group } = require('console');
+const router = express.Router();
+readAllGroups = (req, res) => {
+    console.log("AHHH");
+    group = getGroupModel();
+    group.find({}, function (err, docs) {
+        if (err){
+            console.log(err);
+            console.log("ERR");
+            return res.sendStatus(403);
+        }else{
+            console.log("So it works?");
+            res.status(200).json(docs);
+        }
+    });
+    console.log("BAHHH");
+}
 
+router.route('/readAllGroups').get(readAllGroups);
+
+
+
+//https://github.com/DavideViolante/Angular-Full-Stack/blob/29c12cf7c158f691ac659736da5e003c1a3dbca8/server/controllers/base.ts#L1
+
+
+
+
+
+
+app.use('/api', router);
 main().catch(err => console.log(err));
-
+mongoose.connect('mongodb://localhost:27017/test');
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/test');
+    //await mongoose.connect('mongodb://localhost:27017/test');
     //https://mongoosejs.com/docs/
-    const kittySchema = new mongoose.Schema({
-        message: [String]
-    });
-    const userSchema = new mongoose.Schema({
-        userName: String,
-        email: String,
-        role: [String]
-    });
-    const user = mongoose.model('user', userSchema);
     //createNewUser(user, "123","abc@com.au");
     //createNewUser(user, "1234","abc@com.au");
     //removeUser(user, "123");
@@ -49,16 +67,40 @@ async function main() {
     //readAllUsers(user);
     //checkNewUserName(user, "123");
     //checkNewUserName(user, "gggdfsdf");
+    //createGroup(group, "NewGroup");
+    //createChannel(group, "NewGroup", "newChannel")
+};
+function getUserModel(){
+    const userSchema = new mongoose.Schema({
+        userName: String,
+        email: String,
+        role: [String]
+    });
+    const user = mongoose.model('user', userSchema);
+    return user;
+}
+function getGroupModel(){
     const groupSchema = new mongoose.Schema({
         groupName: String,
         channel: [String],
         assis: [String],
         users: [String]
     });
-    const group = mongoose.model("group", groupSchema);
-    //createGroup(group, "NewGroup");
-    createChannel(group, "NewGroup", "newChannel")
-};
+    var group = mongoose.model("group", groupSchema);
+    return group;
+}
+function readAllGroups(){
+    var group = getGroupModel();
+    callback = (req, res) => {
+        group.find({}, function (err, docs) {
+            if (err){
+                console.log(err);
+            }else{
+                res.status(200).json(docs);
+            }
+        });
+    }
+}
 function createGroup(group, groupNameI){
     group.exists({groupName: groupNameI}, function (err, out) {
         if (err){

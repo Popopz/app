@@ -10,8 +10,21 @@ import { CRUDService } from '../services/crud.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  constructor(){}
-  ngOnInit(){}
+  constructor(private router: Router){}
+  ngOnInit(){
+    let myvar = localStorage.getItem("username");
+    if (myvar == undefined){
+      this.router.navigateByUrl('/login');
+    }
+  }
+  deleteUser(thing:any){}
+  createUser(thing:any){}
+  roles = "SuperAdmin";
+  groups: any = null;
+  role: any = null;
+  email: any = null;
+  username: any = null;
+  
   /*
   roles = this.getRole()
   getRole(){

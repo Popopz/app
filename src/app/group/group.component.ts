@@ -2,6 +2,8 @@ import { getInterpolationArgsLength } from '@angular/compiler/src/render3/view/u
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as TeleCord from '../../assets/TeleCord.json';
+import { CRUDService } from '../services/crud.service';
+import { group } from '../models/groupModel';
 
 @Component({
   selector: 'app-group',
@@ -9,8 +11,52 @@ import * as TeleCord from '../../assets/TeleCord.json';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
-  constructor(){}
-  ngOnInit(){}
+  constructor(private router: Router, private CRUDService: CRUDService){}
+  groups = new group;
+  isLoading = true;
+  ngOnInit(){
+    let myvar = localStorage.getItem("username");
+    if (myvar == undefined){
+      this.getGroups();
+    }else{
+      this.router.navigateByUrl('/login')
+      console.log("BRUH");
+    }
+  }
+  getGroups(){
+    console.log("hi");
+    this.CRUDService.readAllGroups().subscribe(
+      data => this.groups = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+  createGroup(thing:any){
+    this.CRUDService.readAllGroups().subscribe(
+      data => this.groups = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+  addUserToGroup(thing:any){
+    this.CRUDService.readAllGroups().subscribe(
+      data => this.groups = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+  addAssisToGroup(thing:any){
+    this.CRUDService.readAllGroups().subscribe(
+      data => this.groups = data,
+      error => console.log(error),
+      () => this.isLoading = false
+    );
+  }
+  roles = "SuperAdmin";
+  users: any = null;
+  assis: any = null;
+  channel: any = null;
+  page: any = null;
   /*
   roles = this.getRole()
   getRole(){
