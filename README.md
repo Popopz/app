@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     });
 A user may have multiple Roles, but their Email and userName must be consistent. Note, that the password is literally stored inside a string, and so without a Hash function, then a massive security risk is present.
 
-##REST API:
+## REST API:
 The REST API, is made using Express. Each Express route, is meant to take make a callback of a Response and Request. The Routes are connected to a subsequent function that runs a Mongoose query. If the Mongoose Query is successful, then the changes will be saved to MongoDB. 
 
 Note each route, requires a /api infront of it.
